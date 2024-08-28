@@ -30,7 +30,7 @@ nav_order: 4
     "KwantitatieveWaarde.waarde": "-10.5",
     "KwantitatieveWaarde.standaardEenheid": "qudt-unit:CentiM"
   },
-  "Overstortstatus": "https://data.vlaanderen.be/id/concept/OverstortStatus/nietOverstort",
+  "Overstortstatus": "https://data.vlaanderen.be/id/concept/OverstortStatus/nietWerking",
   "Observatie.resultaatTijd": "2024-07-27T14:00:00Z",
   "Observatie.fenomeentijd": {
     "type": "Moment",
@@ -66,6 +66,7 @@ nav_order: 4
     "KwantitatieveWaarde.waarde": "22.5",
     "KwantitatieveWaarde.standaardEenheid": "qudt-unit:DEG_C"
   },
+  "Overstortstatus": "https://data.vlaanderen.be/id/concept/OverstortStatus/nietWerking",
   "Observatie.resultaatTijd": "2024-07-27T14:00:00Z",
   "Observatie.fenomeentijd": {
     "type": "Moment",
@@ -101,16 +102,53 @@ nav_order: 4
     "KwantitatieveWaarde.waarde": "22.5",
     "KwantitatieveWaarde.standaardEenheid": "qudt-unit:CubicMeterPerSecond"
   },
+  "Overstortstatus": "https://data.vlaanderen.be/id/concept/OverstortStatus/InWerking",
   "Observatie.resultaatTijd": "2024-07-27T14:00:00Z",
   "Observatie.fenomeentijd": {
     "type": "Moment",
     "inXSDDateTime": "2024-07-27T14:00:00Z"
   },
-  "Observatie.gebruikteProcedure": "https://aquafin.be/id/concept/observatieproceduretype/OW19",
+  "Observatie.startTijd": "2024-07-27T14:00:00Z",
+  "Observatie.eindTijd":  "2024-07-27T14:04:00Z",
   "Observatie.isWaargenomenMet": "https://aquafin.be/id/sensor/418858"
 }
 ```
+## OverstortDuur
 
+```json
+{
+  "id": "https://aquafin.be/id/observatie/001/overstortduur/2024-07-29T15:00:00Z",
+  "type": "Observatie",
+  "isVersionOf": "https://aquafin.be/id/observatie/001/overstortduur/2024-07-27T14:00:00Z",
+  "modifiedAt": "2024-07-29T15:00:00Z",
+  "Observatie.geobserveerdObject": {
+    "type": "Meetpunt",
+    "geometrie": {
+      "type": "Geometrie",
+      "wktWGS84": "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT(5.298607495000001 50.948995878)",
+      "wktLambert72": "<http://www.opengis.net/def/crs/EPSG/0/31370> POINT(xxx yyy)",
+      "lat": "50.948995878",
+      "long": "5.298607495000001"
+    }
+  },
+  "Observatie.geobserveerdKenmerk": "https://data.vlaanderen.be/id/concept/WaterMetingType/OverstortDuur",
+  "Observatie.simpelResultaat": "240",
+  "Observatie.resultaat": {
+    "type": "KwantitatieveWaarde",
+    "KwantitatieveWaarde.waarde": "240",
+    "KwantitatieveWaarde.standaardEenheid": "qudt-unit:Second"
+  },
+  "Overstortstatus": "https://data.vlaanderen.be/id/concept/OverstortStatus/InWerking",
+  "Observatie.resultaatTijd": "2024-07-27T14:00:00Z",
+  "Observatie.fenomeentijd": {
+    "type": "Moment",
+    "inXSDDateTime": "2024-07-27T14:00:00Z"
+  },
+  "Observatie.startTijd": "2024-07-27T14:00:00Z",
+  "Observatie.eindTijd":  "2024-07-27T14:04:00Z",
+  "Observatie.isWaargenomenMet": "https://aquafin.be/id/sensor/418858"
+}
+```
 ## Context van metingen
 ```json
 {
@@ -212,13 +250,17 @@ nav_order: 4
 {
   "id": "https://aquafin.be/id/sensor/418858",
   "type": ["Sensor", "Device"],
-  "name": {
+  "naam": {
     "type": "Property",
     "value": "Overstortmeter Ijinus US LTE"
   },
-  "location": {
+  "LocatiewktWGS84": {
     "type": "Point",
     "coordinates": [50.948995878, 5.298607495000001]
+  },
+  "LocatiewktLambert72": {
+    "type": "Point",
+    "coordinates": [215341.510, 182488.949]
   },
   "controlledProperty": {
     "type": "Property",
@@ -229,22 +271,26 @@ nav_order: 4
     ]
   },
   "familyType": "",
-  "owner": {
-    "type": "Property",
-    "value": "Aquafin"
-  },
-  "manufacturerName": {
+  "Leverancier": {
     "type": "Property",
     "value": "ELSCOLAB"
   },
-  "serialNumber": {
+ "eigenaar": {
+    "type": "Property",
+    "value": "Aquafin"
+  },
+  "serieNummer": {
     "type": "Property",
     "value": "IJA0102-00001836"
   },
-  "deviceState": {
+  "apparaatStatus": {
     "type": "Property",
     "value": "Actief"
   },
+  "rioolNummer": {
+    "type": "Property",
+    "value": "P_000003850759"
+  }
   "@context": [{
     	"Sensor": "http://www.w3.org/ns/sosa/Sensor"
   	},
