@@ -254,11 +254,11 @@ nav_order: 4
     "type": "Property",
     "value": "Overstortmeter Ijinus US LTE"
   },
-  "LocatiewktWGS84": {
+  "Locatie": {
     "type": "Point",
     "coordinates": [50.948995878, 5.298607495000001]
   },
-  "LocatiewktLambert72": {
+  "LocatieLambert72": {
     "type": "Point",
     "coordinates": [215341.510, 182488.949]
   },
