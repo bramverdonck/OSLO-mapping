@@ -23,7 +23,7 @@ Concreet werden volgende klasses gebruikt, maar gemapt op SSN/SOSA ipv ISO19156:
 
 Met dank aan departement Omgeving werd het implementatiemodel als volgt opgesteld:
 
-![alt text](image-2.png)
+![Implementatiemodel](/docs/images/SSN_Sosa_Overview.png)
 
 <!-- Een belangrijk verschil met OSLO waterkwaliteit is dat de specifieke kenmerken en parameters (temperatuur, debiet, hoogte...) werden uitgemodelleerd op Kenmerktype in plaats van subklasses. -->
 
