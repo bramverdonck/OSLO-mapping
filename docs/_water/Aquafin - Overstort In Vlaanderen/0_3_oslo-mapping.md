@@ -18,7 +18,7 @@ In onderstaande voorbeelden wordt meegegeven hoe de transformatie plaatsvindt.
 Onderstaand nogmaals de data zoals ze ontvangen wordt door de LDIO workbench in JSON-formaat.
 
 ```json
-      {
+{
 	"type":"Event",
 	"start_timestamp":"2025-02-18T08:31:00.000Z",
 	"end_timestamp":"2025-02-18T08:41:00.000Z",
@@ -26,10 +26,8 @@ Onderstaand nogmaals de data zoals ze ontvangen wordt door de LDIO workbench in 
 	"status":"WerkingOnbekend",
 	"is_observed_with":"P1037143",
 	"modified_at":"2025-02-18T10:21:17.979Z",
-	"end_timestamp_known":true,
-	"sent_to_evh":false 
-     }
-
+	"is_deleted":"false"
+}
 ```
 
 ## OSLO mapping
@@ -47,11 +45,10 @@ CONSTRUCT {
           ?s aquafin:start_timestamp ?start_timestamp .
           ?s aquafin:end_timestamp ?end_timestamp .
           ?s aquafin:modified_at ?modified_at .
-          ?s aquafin:measurement_location ?measurement_location .
+          OPTIONAL {?s aquafin:measurement_location ?measurement_location . }
           ?s aquafin:status ?status .
           ?s aquafin:is_observed_with ?is_observed_with .
-          ?s aquafin:end_timestamp_known ?end_timestamp_known .
-          # ?s aquafin:type ?type.
+          ?s aquafin:is_deleted ?is_deleted .
 
           BIND(IRI(CONCAT("https://aquafin.be/id/event/", STRUUID())) AS ?event)
 
@@ -61,7 +58,6 @@ CONSTRUCT {
 
           BIND(IRI(CONCAT("https://aquafin.be/id/meetpunt/", COALESCE(?measurement_location, "unknown"))) AS ?measurement_location_bind)
           BIND(IRI(CONCAT("https://aquafin.be/id/sensor/", COALESCE(?is_observed_with, "unknown"))) AS ?is_observed_with_bind)
-          # BIND(IRI(CONCAT("Event",COALESCE(?type,"unknown"))) AS ?message_type)
     }
 }
 ```
@@ -99,18 +95,17 @@ Het versioneren wordt hier wel in de mapping gedaan adhv de modifiedAt-waarde om
             sosa:hasFeatureOfInterest ?measurement_location_bind ;
             ssn:status ?status ;
             sosa:madeBySensor ?is_observed_with_bind ;
-            aquafin:endTimestampKnown ?end_timestamp_known ;
-            # aquafin:type ?type .
+            aquafin:endTimestampKnown ?end_timestamp_known .
+
         }
         WHERE {
           ?s aquafin:start_timestamp ?start_timestamp .
           ?s aquafin:end_timestamp ?end_timestamp .
           ?s aquafin:modified_at ?modified_at .
-          ?s aquafin:measurement_location ?measurement_location .
+          OPTIONAL {?s aquafin:measurement_location ?measurement_location . }
           ?s aquafin:status ?status .
           ?s aquafin:is_observed_with ?is_observed_with .
-          ?s aquafin:end_timestamp_known ?end_timestamp_known .
-          # ?s aquafin:type ?type.
+          ?s aquafin:is_deleted ?is_deleted .
 
           BIND(IRI(CONCAT("https://aquafin.be/id/event/", STRUUID())) AS ?event)
 
@@ -120,7 +115,6 @@ Het versioneren wordt hier wel in de mapping gedaan adhv de modifiedAt-waarde om
 
           BIND(IRI(CONCAT("https://aquafin.be/id/meetpunt/", COALESCE(?measurement_location, "unknown"))) AS ?measurement_location_bind)
           BIND(IRI(CONCAT("https://aquafin.be/id/sensor/", COALESCE(?is_observed_with, "unknown"))) AS ?is_observed_with_bind)
-          # BIND(IRI(CONCAT("Event",COALESCE(?type,"unknown"))) AS ?message_type)
         }  
 
   ...
@@ -148,10 +142,10 @@ Onderstaand nogmaals de data zoals ze ontvangen wordt door de LDIO workbench in 
 	"lat_Lambert72":193183.8663904309,
 	"long_Lambert72":235956.9331605651,
 	"measurement_location":"P_000000217952",
-	"load_timestamp_utc":"2025-02-16T22:01:04.229Z",
-	"change_timestamp_utc":"2024-12-29T05:52:09.343Z",
 	"quality_label":"A01",
-	"scd_update_timestamp":"2025-02-14T08:46:50.202Z"
+	"valid_from":"2025-04-11T13:31:56.947Z",
+	"valid_to":"9999-12-31T23:59:59.000Z"
+	"modified_at":"2025-04-11T13:31:56.947Z"
 }
 ```
 
@@ -167,26 +161,36 @@ Bovenstaande brondata wordt gebruikt als input in de WHERE-clausule:
 CONSTRUCT {
   ...
 } WHERE {
-	 ?s aquafin:id  ?id .
-         ?s aquafin:name ?name .
-         ?s aquafin:owner ?owner .
-         ?s aquafin:supplier ?supplier .
-         ?s aquafin:brand ?brand .
-         ?s aquafin:serial_number ?serial_number .
-         ?s aquafin:device_state ?device_state .      
-         ?s aquafin:lat_WGS84 ?lat_WGS84 .
-         ?s aquafin:long_WGS84 ?long_WGS84 .
-         ?s aquafin:lat_Lambert72 ?lat_Lambert72 .
-         ?s aquafin:long_Lambert72 ?long_Lambert72 .
-         ?s aquafin:measurement_location ?measurement_location .    
-         ?s aquafin:load_timestamp_utc ?load_timestamp_utc .             
-         ?s aquafin:change_timestamp_utc ?change_timestamp_utc . 
-         ?s aquafin:quality_label ?quality_label .
-         ?s aquafin:scd_update_timestamp ?scd_update_timestamp .
+          ?s aquafin:id  ?id .
+          ?s aquafin:valid_from ?valid_from .
+          ?s aquafin:modified_at ?modified_at . 
 
-         BIND(IRI(CONCAT("https://aquafin.be/id/sensor/", STRUUID())) AS ?sensor)
-         BIND(IRI(CONCAT("https://aquafin.be/id/meetpunt/", COALESCE(?measurement_location, "unknown"))) AS ?measurement_location_name)
 
+          OPTIONAL { ?s aquafin:device_type ?device_type . }
+          OPTIONAL { ?s aquafin:name ?name . }
+          OPTIONAL { ?s aquafin:owner ?owner . }
+          OPTIONAL { ?s aquafin:supplier ?supplier . }
+          OPTIONAL { ?s aquafin:brand ?brand . }
+          OPTIONAL { ?s aquafin:serial_number ?serial_number . }
+          OPTIONAL { ?s aquafin:device_state ?device_state . }
+          OPTIONAL { ?s aquafin:lat_WGS84 ?lat_WGS84 . }
+          OPTIONAL { ?s aquafin:long_WGS84 ?long_WGS84 . }
+          OPTIONAL { ?s aquafin:lat_Lambert72 ?lat_Lambert72 . }
+          OPTIONAL { ?s aquafin:long_Lambert72 ?long_Lambert72 . }
+          OPTIONAL {
+            ?s aquafin:measurement_location ?measurement_location .          BIND(IRI(CONCAT("https://aquafin.be/id/meetpunt/", COALESCE(?measurement_location, "unknown"))) AS ?measurement_location_name)        }
+          OPTIONAL { ?s aquafin:quality_label ?quality_label . }
+          OPTIONAL { ?s aquafin:valid_to ?valid_to . }
+
+          BIND(IRI(CONCAT("https://aquafin.be/id/sensor/", STRUUID())) AS ?sensor)
+          BIND(xsd:dateTime(?valid_from) AS ?valid_from_bind)
+          OPTIONAL {
+            ?s aquafin:valid_to ?valid_to .
+            BIND(xsd:dateTime(?valid_to) AS ?valid_to_bind)
+          }
+          OPTIONAL {
+            ?s aquafin:modified_at ?modified_at .
+            BIND(xsd:dateTime(?modified_at) AS ?modified_at_bind)
     }
 }
 ```
@@ -242,26 +246,36 @@ Het versioneren wordt hier wel in de mapping gedaan adhv de modifiedAt-waarde om
                   aquafin:quality_label ?quality_label ;
         }
         WHERE {
-	 ?s aquafin:id  ?id .
-         ?s aquafin:name ?name .
-         ?s aquafin:owner ?owner .
-         ?s aquafin:supplier ?supplier .
-         ?s aquafin:brand ?brand .
-         ?s aquafin:serial_number ?serial_number .
-         ?s aquafin:device_state ?device_state .      
-         ?s aquafin:lat_WGS84 ?lat_WGS84 .
-         ?s aquafin:long_WGS84 ?long_WGS84 .
-         ?s aquafin:lat_Lambert72 ?lat_Lambert72 .
-         ?s aquafin:long_Lambert72 ?long_Lambert72 .
-         ?s aquafin:measurement_location ?measurement_location .    
-         ?s aquafin:load_timestamp_utc ?load_timestamp_utc .             
-         ?s aquafin:change_timestamp_utc ?change_timestamp_utc . 
-         ?s aquafin:quality_label ?quality_label .
-         ?s aquafin:scd_update_timestamp ?scd_update_timestamp .
+          ?s aquafin:id  ?id .
+          ?s aquafin:valid_from ?valid_from .
+          ?s aquafin:modified_at ?modified_at . 
 
-         BIND(IRI(CONCAT("https://aquafin.be/id/sensor/", STRUUID())) AS ?sensor)
-         BIND(IRI(CONCAT("https://aquafin.be/id/meetpunt/", COALESCE(?measurement_location, "unknown"))) AS ?measurement_location_name)
 
+          OPTIONAL { ?s aquafin:device_type ?device_type . }
+          OPTIONAL { ?s aquafin:name ?name . }
+          OPTIONAL { ?s aquafin:owner ?owner . }
+          OPTIONAL { ?s aquafin:supplier ?supplier . }
+          OPTIONAL { ?s aquafin:brand ?brand . }
+          OPTIONAL { ?s aquafin:serial_number ?serial_number . }
+          OPTIONAL { ?s aquafin:device_state ?device_state . }
+          OPTIONAL { ?s aquafin:lat_WGS84 ?lat_WGS84 . }
+          OPTIONAL { ?s aquafin:long_WGS84 ?long_WGS84 . }
+          OPTIONAL { ?s aquafin:lat_Lambert72 ?lat_Lambert72 . }
+          OPTIONAL { ?s aquafin:long_Lambert72 ?long_Lambert72 . }
+          OPTIONAL {
+            ?s aquafin:measurement_location ?measurement_location .          BIND(IRI(CONCAT("https://aquafin.be/id/meetpunt/", COALESCE(?measurement_location, "unknown"))) AS ?measurement_location_name)        }
+          OPTIONAL { ?s aquafin:quality_label ?quality_label . }
+          OPTIONAL { ?s aquafin:valid_to ?valid_to . }
+
+          BIND(IRI(CONCAT("https://aquafin.be/id/sensor/", STRUUID())) AS ?sensor)
+          BIND(xsd:dateTime(?valid_from) AS ?valid_from_bind)
+          OPTIONAL {
+            ?s aquafin:valid_to ?valid_to .
+            BIND(xsd:dateTime(?valid_to) AS ?valid_to_bind)
+          }
+          OPTIONAL {
+            ?s aquafin:modified_at ?modified_at .
+            BIND(xsd:dateTime(?modified_at) AS ?modified_at_bind)
         }  
 
   ...

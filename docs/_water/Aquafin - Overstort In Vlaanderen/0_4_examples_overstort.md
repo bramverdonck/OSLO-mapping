@@ -32,37 +32,40 @@ PREFIX xsd:                              <http://www.w3.org/2001/XMLSchema#>
 #### Eindresultaat Overstort Sensor op de LDES Server
 
 ```
-<https://aquafin.be/id/sensor/a2f87c5a-fd19-4169-9bfc-a270af465e75/2025-02-26T20:06:28.783816114>
+<https://aquafin.be/id/sensor/f5e0491b-13f0-4f0b-a384-e18d14070400/2025-06-06T06:53:45.831925690>
         rdf:type                     <http://www.w3.org/ns/sosa/Sensor>;
-        dct:description              "Overstortmeter Ijinus US LTE";
-        dct:identifier               "1";
-        dct:isVersionOf              <https://aquafin.be/id/sensor/a2f87c5a-fd19-4169-9bfc-a270af465e75>;
+        dct:description              "Overstortmeter Ijinus RD LTE";
+        dct:identifier               "P9999999";
+        dct:isVersionOf              <https://aquafin.be/id/sensor/f5e0491b-13f0-4f0b-a384-e18d14070400>;
+        dct:type                     "Overstortmeter";
         <http://www.w3.org/2003/01/geo/wgs84_pos#lat>
-                5.104243219340782E1;
+                5.129880773497998E1;
         <http://www.w3.org/2003/01/geo/wgs84_pos#long>
-                5.594445509825586E0;
-        prov:generatedAtTime         "2025-02-26T20:06:28.783Z"^^xsd:dateTime;
+                4.904165566604088E0;
+        prov:generatedAtTime         "2025-06-06T06:53:45.831Z"^^xsd:dateTime;
         <http://www.w3.org/ns/sosa/hasFeatureOfInterest>
-                <https://aquafin.be/id/meetpunt/P_000000217952>;
-        <https://aquafin.be/ns#change_timestamp_utc>
-                "2024-12-29T05:52:09.343Z";
+                <https://aquafin.be/id/meetpunt/P_000000176054>;
         <https://aquafin.be/ns#lat_Lambert72>
-                1.931838663904309E5;
-        <https://aquafin.be/ns#load_timestamp_utc>
-                "2025-02-16T22:01:04.229Z";
+                2.2113103E5;
         <https://aquafin.be/ns#long_Lambert72>
-                2.359569331605651E5;
+                1.8734346E5;
+        <https://aquafin.be/ns#modified_at>
+                "2025-04-30T08:16:08.948Z"^^xsd:dateTime;
         <https://aquafin.be/ns#quality_label>
-                "A01";
+                "E00";
+        <https://aquafin.be/ns#valid_from>
+                "2025-03-25T00:00:00.000Z"^^xsd:dateTime;
+        <https://aquafin.be/ns#valid_to>
+                "2025-04-11T13:31:56.947Z"^^xsd:dateTime;
         <https://schema.org/serialNumber>
-                "IJA0102-00004425";
+                "IJA0102-00009961";
         <https://schema.org/vendor>  "ELSCOLAB";
         <https://smartdatamodels.org/dataModel.Environment/deviceId>
-                "1";
+                "P9999999";
         <https://smartdatamodels.org/dataModel.Environment/deviceModel>
                 "Ijinus";
         <https://smartdatamodels.org/dataModel.Environment/deviceName>
-                "Overstortmeter Ijinus US LTE";
+                "Overstortmeter Ijinus RD LTE";
         <https://smartdatamodels.org/dataModel.Environment/deviceStatus>
                 "ACTIEF";
         <https://smartdatamodels.org/owner>
@@ -74,22 +77,22 @@ PREFIX xsd:                              <http://www.w3.org/2001/XMLSchema#>
 
 ```
 
-<https://aquafin.be/id/event/61443dd0-e8a5-4d60-aa59-91d2ade86150/2025-02-06T07:02:14.284989010>
+<https://aquafin.be/id/event/cb69ecd5-52a5-459b-88bf-c46d8ed796c0/2025-04-16T14:58:59.625248841>
         rdf:type              <http://www.w3.org/ns/sosa/Event>;
-        dct:isVersionOf       <https://aquafin.be/id/event/61443dd0-e8a5-4d60-aa59-91d2ade86150>;
-        prov:generatedAtTime  "2025-02-06T07:02:14.284Z"^^xsd:dateTime;
+        dct:isVersionOf       <https://aquafin.be/id/event/cb69ecd5-52a5-459b-88bf-c46d8ed796c0>;
+        prov:generatedAtTime  "2025-04-16T14:58:59.625Z"^^xsd:dateTime;
         <http://www.w3.org/ns/sosa/event_end_time>
-                "2025-02-05T16:30:00.000Z"^^xsd:dateTime;
+                "2025-04-05T18:15:00.000Z"^^xsd:dateTime;
         <http://www.w3.org/ns/sosa/event_start_time>
-                "2025-02-05T16:16:00.000Z"^^xsd:dateTime;
+                "2025-04-05T18:01:00.000Z"^^xsd:dateTime;
         <http://www.w3.org/ns/sosa/hasFeatureOfInterest>
                 <https://aquafin.be/id/meetpunt/P_000000582719>;
         <http://www.w3.org/ns/sosa/madeBySensor>
                 <https://aquafin.be/id/sensor/P1035782>;
         <http://www.w3.org/ns/sosa/modified_at>
-                "2025-02-06T06:34:13.273Z"^^xsd:dateTime;
+                "2025-04-06T05:14:26.333Z"^^xsd:dateTime;
         <http://www.w3.org/ns/ssn/status>
                 "WerkingOnbekend";
-        <https://aquafin.be/ns#endTimestampKnown>
-                true .
+        <https://aquafin.be/ns#is_deleted>
+                false .
 ```
