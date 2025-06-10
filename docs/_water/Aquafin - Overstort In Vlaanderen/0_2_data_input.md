@@ -25,8 +25,7 @@ Onderstaand een json-voorbeeld
 	"status":"WerkingOnbekend",
 	"is_observed_with":"P1037143",
 	"modified_at":"2025-02-18T10:21:17.979Z",
-	"end_timestamp_known":true,
-	"sent_to_evh":false 
+	"is_deleted":"false"
 }
 ```
 
@@ -50,10 +49,10 @@ Indien er wijzigingen optreden in de status, locatie of kwaliteit van de sensor,
 	"lat_Lambert72":193183.8663904309,
 	"long_Lambert72":235956.9331605651,
 	"measurement_location":"P_000000217952",
-	"load_timestamp_utc":"2025-02-16T22:01:04.229Z",
-	"change_timestamp_utc":"2024-12-29T05:52:09.343Z",
 	"quality_label":"0",
-	"scd_update_timestamp":"2025-02-14T08:46:50.202Z"
+	"valid_from":"2025-04-11T13:31:56.947Z",
+	"valid_to":"9999-12-31T23:59:59.000Z"
+	"modified_at":"2025-04-11T13:31:56.947Z"
 }
 
 ```
@@ -91,5 +90,4 @@ https://www.w3.org/TR/wot-thing-description
       "sdm": "https://smartdatamodels.org/"
       }
   }
-}
-
+```
