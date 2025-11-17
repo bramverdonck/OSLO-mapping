@@ -21,7 +21,7 @@ Onderstaand een json-voorbeeld
 	"type":"Event", --Type Event
 	"start_timestamp":"2025-02-18T08:31:00.000Z", -- Tijdstip waarop het event startte
 	"end_timestamp":"2025-02-18T08:41:00.000Z", -- Tijdstip waraop het event eindigde
-	"measurement_location":"P_000000181521", --unieke identifier van de locatie waar de meting werd uitgevoerd
+	"measurement_location":"P_000000181521", --unieke identifier van de locatie waar de meting werd uitgevoerd. P-nummers op basis van de Rioolinventaris
 	"status":"WerkingOnbekend", --Status van het event. Werd er overstort vastgesteld, geen overstort vastgesteld of was er een verstoord signaal (WerkingOnbekend)
 	"is_observed_with":"P1037143", -- unieke identifier van het toestel waarmee de meting werd uitgevoerd
 	"modified_at":"2025-02-18T10:21:17.979Z", --Tijdstip waarop het event werd verstuurd
@@ -47,7 +47,7 @@ Indien er wijzigingen optreden in de status, locatie of kwaliteit van de sensor,
 	"long_WGS84":5.594445509825586, --breedte- coördinnaat van de locatie van het toestel volgens WGS84-normen
 	"lat_Lambert72":193183.8663904309, -- lengte-coördinnaat van de locatie van het toestel volgens Lambert72-normen
 	"long_Lambert72":235956.9331605651, -- breedte-coördinnaat van de locatie van het toestel volgens Lambert72-normen
-	"measurement_location":"P_000000217952", --unieke identifier van de locatie waar de meting werd uitgevoerd
+	"measurement_location":"P_000000217952", --unieke identifier van de locatie waar de meting werd uitgevoerd. P-nummers op basis van de Rioolinventaris
 	"quality_label":"A00", --kwaliteitskenmerk van het toestel
 	"valid_from":"2025-04-11T13:31:56.947Z", --start geldigheidsdatum waarop dit record valide was
 	"valid_to":"9999-12-31T23:59:59.000Z" -- einde geldigheidsdatum waarop dit record valide was
